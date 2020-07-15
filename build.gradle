@@ -1,0 +1,31 @@
+plugins {
+    id "com.github.johnrengelman.shadow" version "5.2.0"
+}
+
+group 'me.peridot.premiumlogintest'
+version '1.0'
+
+apply plugin: 'java'
+apply plugin: 'com.github.johnrengelman.shadow'
+
+sourceCompatibility = 1.8
+
+shadowJar {
+    mergeServiceFiles()
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    maven { url "https://hub.spigotmc.org/nexus/content/repositories/snapshots/" }
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+    maven { url "https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple" }
+    maven { url "https://mvnrepository.com/artifact/com.mashape.unirest/unirest-java" }
+}
+
+dependencies {
+    compileOnly "org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT"
+    compile "com.googlecode.json-simple:json-simple:1.1"
+    compile "com.mashape.unirest:unirest-java:1.4.9"
+    compileOnly fileTree(include: ['*.jar'], dir: 'libs')
+}
